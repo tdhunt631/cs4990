@@ -1,0 +1,15 @@
+from django.db import models
+
+# Create your models here.
+class Poll(models.Model):
+	author = models.Charfield(max_length=60)
+	question = models.Charfield(max_length=200)
+	pub_date = models.DateTimeField('date published')
+
+class Choice(models.Model):
+	poll = model.ForeignKey(Poll)
+	answer = models.Charfield(max_legnth=200)
+	count = models.IntegerField(default=0)
+
+
+
