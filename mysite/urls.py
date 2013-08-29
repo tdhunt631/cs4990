@@ -7,4 +7,5 @@ admin.autodiscover()
 urlpatterns = patterns('',
 	url(r'^polls/', include('polls.urls', namespace="polls")),
 	url(r'^admin/', include(admin.site.urls)),
+	url(r'^', 'portfolio.views.display_portfolio'),
 )
