@@ -1,0 +1,17 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block content %}
+	<table>
+	{% for casestudy in casestudies %}
+		<tr><td>
+		{#	{% thumbnail casestudy.picture "100x100" crop="center" as pic  %}  #}
+				<img src="{{ casestudy.picture }}" />
+		{#	{% endthumbnail %} #}
+			<h2>{{ casestudy.title  }}</h2>
+			<p>{{ casestudy.description }}</p>
+		</td></tr>	
+	{% endfor %}
+	<table>
+{% endblock %}
