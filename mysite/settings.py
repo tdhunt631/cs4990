@@ -3,6 +3,7 @@ import os
 DIRNAME = os.path.dirname(__file__)
 
 DEBUG = True
+THUMBNAIL_DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

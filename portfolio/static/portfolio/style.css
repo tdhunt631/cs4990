@@ -29,12 +29,12 @@ table {
 }
 
 .cell {
-	width: 190px;
+	width: 162px;
 	padding: 25px 50px 25px 50px;
 	border: 2px solid blue;
 	text-align: center;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-	background-color: #efefef;
+	background-color: #eeeeee;
 }

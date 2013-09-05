@@ -6,14 +6,15 @@
 
 {% block content %}
 	<table>
+	<tr>
 	{% for casestudy in casestudies %}
-		{% if forloop.counter|divisibleby:3 %}<tr>{% endif %}		
+		{% if forloop.counter|divisibleby:4 %}</tr><tr>{% endif %}		
 			<td class="cell">
-				<img src="{{ casestudy.picture.url }}" />
+				<img src="{{ casestudy.picture.url }}" width="100px" /> 
 				<h2>{{ casestudy.title  }}</h2>
 				<p>{{ casestudy.description }}</p>
-			</td>
-		{% if forloop.counter|divisibleby:3 %}</tr>{% endif %}	
+			</td>	
 	{% endfor %}
+	</tr>
 	<table>
 {% endblock %}
