@@ -10,9 +10,11 @@
 	{% for casestudy in casestudies %}
 		{% if forloop.counter|divisibleby:4 %}</tr><tr>{% endif %}		
 			<td class="cell">
+				<a href={% url 'portfolio:detail' casestudy.id %}>
 				<img src="{{ casestudy.picture.url }}" width="100px" /> 
 				<h2>{{ casestudy.title  }}</h2>
 				<p>{{ casestudy.description }}</p>
+				</a>
 			</td>	
 	{% endfor %}
 	</tr>

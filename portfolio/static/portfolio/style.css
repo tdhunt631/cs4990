@@ -38,3 +38,17 @@ table {
 	border-radius: 10px;
 	background-color: #eeeeee;
 }
+
+.cell a {
+	text-decoration: none;
+}
+
+#mainCell {
+	text-align: center;
+	width: 900px;
+	margin: 30px auto 0 auto;
+}
+
+#mainCell h1 {
+	color: black;
+}
