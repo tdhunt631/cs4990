@@ -1,17 +1,19 @@
 {% extends "portfolio/base.html" %}
+{% load thumbnail %}
+{% load staticfiles %}
 
 {% block title %}Portfolio{% endblock %}
 
 {% block content %}
 	<table>
 	{% for casestudy in casestudies %}
-		<tr><td>
-		{#	{% thumbnail casestudy.picture "100x100" crop="center" as pic  %}  #}
-				<img src="{{ casestudy.picture }}" />
-		{#	{% endthumbnail %} #}
-			<h2>{{ casestudy.title  }}</h2>
-			<p>{{ casestudy.description }}</p>
-		</td></tr>	
+		{% if forloop.counter|divisibleby:3 %}<tr>{% endif %}		
+			<td class="cell">
+				<img src="{{ MEDIA_URL }}" />
+				<h2>{{ casestudy.title  }}</h2>
+				<p>{{ casestudy.description }}</p>
+			</td>
+		{% if forloop.counter|divisibleby:3 %}</tr>{% endif %}	
 	{% endfor %}
 	<table>
 {% endblock %}
