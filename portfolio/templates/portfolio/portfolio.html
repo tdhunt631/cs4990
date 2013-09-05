@@ -9,7 +9,7 @@
 	{% for casestudy in casestudies %}
 		{% if forloop.counter|divisibleby:3 %}<tr>{% endif %}		
 			<td class="cell">
-				<img src="{{ MEDIA_URL }}" />
+				<img src="{{ casestudy.picture.url }}" />
 				<h2>{{ casestudy.title  }}</h2>
 				<p>{{ casestudy.description }}</p>
 			</td>
