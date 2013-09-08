@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load widgets %}
 
 {% block title %}Blogging at its best?{% endblock %}
 {% block content %}
@@ -8,6 +9,10 @@
 	<div id="widgets">
 		<div>
 			<a href="/blog/">Blog Home</a>
+		</div>
+		
+		<div> 
+			{% getCategories %}
 		</div>
 	</div>
 	<div class="clear"></div>

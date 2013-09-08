@@ -5,7 +5,7 @@
 {% block posting %}
 	<div id="posts">
 		<div class="post">
-			<a class="title" href="{{post.url}}">{{ post.title }}</a>
+			<span class="postTitle">{{ post.title }}</span>
 			<p class="author">Posted by {{post.author}} on {{post.publishedDate}}<br />Category: {{post.category}}</p>
 			<p class="body">{{post.body|linebreaks}}</p>
 		</div>
