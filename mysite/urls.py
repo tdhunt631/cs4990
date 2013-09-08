@@ -10,5 +10,6 @@ urlpatterns = patterns('',
 	url(r'^polls/', include('polls.urls', namespace="polls")),
 	url(r'^admin/', include(admin.site.urls)),	
 	url(r'^portfolio/', include('portfolio.urls', namespace="portfolio")),
+	url(r'^blog/', include('blog.urls', namespace="blog")),
 	url(r'^$', include(admin.site.urls)),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
