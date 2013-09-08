@@ -6,7 +6,7 @@
 	<div id="posts">
 		<div class="post">
 			<a class="title" href="{{post.url}}">{{ post.title }}</a>
-			<p class="author">Posted by {{post.author}} on {{post.publishedDate}}</p>
+			<p class="author">Posted by {{post.author}} on {{post.publishedDate}}<br />Category: {{post.category}}</p>
 			<p class="body">{{post.body|linebreaks}}</p>
 		</div>
 	</div>
