@@ -8,7 +8,7 @@ class Post(models.Model):
 	publishedDate = models.DateTimeField(auto_now_add=True)
 	active = models.BooleanField(default=True)
 	author = models.ForeignKey(User)
-	slug = models.SlugField(max_length=100, unique=True)
+	url = models.SlugField(max_length=100, unique=True)
 	category = models.ForeignKey('blog.Category')	
 
 	def __unicode__ (self):
@@ -17,9 +17,10 @@ class Post(models.Model):
 	def getUrl(self):
 		return reverse('blog.views.post', args=[self.slug])
 
+
 class Category(models.Model):
 	title = models.CharField(max_length=100, db_index=True)
-	slug = models.SlugField(max_length=100, db_index=True)
+	url = models.SlugField(max_length=100, db_index=True)
 	
 	def __unicode__(self):
 		return self.title

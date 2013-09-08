@@ -7,6 +7,6 @@ def index(request):
 	posts = Post.objects.filter(active=True)
 	return render(request, 'blog/index.html', {'posts':posts})
 
-def post(request, slug):
-	post = get_object_or_404(Post, slug=slug)
+def post(request, url):
+	post = get_object_or_404(Post, url=url)
 	return render(request, 'blog/post.html', {'post':post})

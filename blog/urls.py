@@ -4,5 +4,5 @@ from blog import views
 
 urlpatterns = patterns('',
 	url(r'^$', views.index, name="index"),
-	url(r'^(?P<slug>[\w\-]+)/$', views.post, name="post"),
+	url(r'^(?P<url>[\w\-]+)/$', views.post, name="post"),
 )
