@@ -19,8 +19,13 @@ class Post(models.Model):
 
 
 class Category(models.Model):
+	class Meta:
+		verbose_name_plural = "categories"	
+
 	title = models.CharField(max_length=100, db_index=True)
 	url = models.SlugField(max_length=100, db_index=True)
 	
 	def __unicode__(self):
 		return self.title
+
+	

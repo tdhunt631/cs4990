@@ -1,5 +1,13 @@
-<ul>
-	{% for post in posts %}
-		<li><a href="{{post.url}}">{{ post.title }}</a></li>
-	{% endfor %}
-</ul>
+{% extends "blog/base.html" %}
+
+{% block title %}Blogging at its best?{% endblock %}
+{% block content %}
+	{% block posting %}
+	
+	{% endblock %}
+	<div id="widgets">
+		some widgets go here
+	</div>
+	<div class="clear"></div>
+{% endblock %}
+

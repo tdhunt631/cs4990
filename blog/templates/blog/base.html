@@ -1,0 +1,20 @@
+{% load staticfiles %}
+
+<!doctype "html">
+<html>
+<head>
+	<title>{% block title %}My Site{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" />
+</head>
+
+<body>
+	<div id="header">
+		<div id="headerWrapper">
+			<h1>Travis Hunt - Blogging at its best?</h1>
+		</div>
+	</div>
+	<div id="wrapper">
+		{% block content %}{% endblock %}
+	</div>
+</body>
+</html>
