@@ -1,9 +1,7 @@
 <h3>Categories</h3>
-<hr />
+
 {% for cat in categories %}
-	<p>	
-		{{cat.title}}
-	</p>
 	<hr>
+	<a class="catTitle" href="/blog/categories/{{ cat.url }}">{{ cat.title }}</a>
 {% endfor %}
 

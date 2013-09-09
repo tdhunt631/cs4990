@@ -8,7 +8,7 @@ def getCategories():
 	catList = Category.objects.all()
 	categories = []
 	for cat in catList:
-		categories.append(cat.title)
+		categories.append(cat)
 	return {'categories': categories}
 
 

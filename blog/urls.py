@@ -5,4 +5,5 @@ from blog import views
 urlpatterns = patterns('',
 	url(r'^$', views.index, name="posts"),
 	url(r'^(?P<url>[\w\-]+)/$', views.post, name="post"),
+	url(r'^categories/(?P<url>[\w\-]+)/$', views.category, name="posts"),
 )
