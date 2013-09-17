@@ -3,8 +3,8 @@
 {% block title %}Inventory Manger Item List{% endblock %}
 {% block content %}
 <body>
-	<table border="1">
-		<tr>
+	<table id="list">
+		<tr id="titleRow">
 			<td><h3>Name</h3></td>
 			<td><h3>Description</h3></td>
 			<td><h3>Category</h3></td>
@@ -13,23 +13,24 @@
 		</tr>
 
 		{% for item in items %}
-			<tr>
+			<tr class="rows">
 				<td>{{ item.name }}</td>
 				<td>{{ item.description }}</td>
 				<td>{{ item.category }}</td>
 				<td>{{ item.quantity }}</td>
 				<td>
-			
-				<form action="{% url 'inventory:addForm' item.id %}" method="POST">
-				{% csrf_token %}	
-				<button type="submit" class="add" id="{{ item.id }}">add</button>
-				</form>
-				
-				<form action="{% url 'inventory:subtractForm' item.id %}" method="POST">
-				{% csrf_token %}
-				<button type="submit" class="subtract">subtract</button>
-				</form>
-			
+					<div class="float">	
+						<form action="{% url 'inventory:addForm' item.id %}" method="POST">
+							{% csrf_token %}	
+							<button type="submit" class="add" id="{{ item.id }}">+1</button>
+						</form>
+					</div>
+					<div class="float">
+						<form action="{% url 'inventory:subtractForm' item.id %}" method="POST">
+							{% csrf_token %}
+							<button type="submit" class="subtract">-1</button>
+						</form>
+					</div>
 				</td>
 			</tr>
 		{% endfor %}
