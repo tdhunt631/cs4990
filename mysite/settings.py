@@ -133,6 +133,7 @@ INSTALLED_APPS = (
     'portfolio',
     'sorl.thumbnail',   
     'blog',
+    'inventory',
 )
 
 # A sample logging configuration. The only tangible logging

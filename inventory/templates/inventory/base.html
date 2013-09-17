@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<!doctype "html">
+<html>
+<head>
+	<title>{% block title %}Inventory Site{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}" />
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="{% static 'inventory/forms.js' %}"></script>
+</head>
+
+<body>
+	<div id="header">
+		<div id="headerWrapper">
+			<h1>Travis Hunt - Inventory Manager</h1>
+		</div>
+	</div>
+	<div id="wrapper">
+		{% block content %}
+		{% endblock %}
+	</div>
+</body>
+</html>

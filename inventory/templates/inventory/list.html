@@ -1,0 +1,38 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Inventory Manger Item List{% endblock %}
+{% block content %}
+<body>
+	<table border="1">
+		<tr>
+			<td><h3>Name</h3></td>
+			<td><h3>Description</h3></td>
+			<td><h3>Category</h3></td>
+			<td><h3>Quantity</h3></td>
+			<td><h3>Update Quantity</h3></td>
+		</tr>
+
+		{% for item in items %}
+			<tr>
+				<td>{{ item.name }}</td>
+				<td>{{ item.description }}</td>
+				<td>{{ item.category }}</td>
+				<td>{{ item.quantity }}</td>
+				<td>
+			
+				<form action="{% url 'inventory:addForm' item.id %}" method="POST">
+				{% csrf_token %}	
+				<button type="submit" class="add" id="{{ item.id }}">add</button>
+				</form>
+				
+				<form action="{% url 'inventory:subtractForm' item.id %}" method="POST">
+				{% csrf_token %}
+				<button type="submit" class="subtract">subtract</button>
+				</form>
+			
+				</td>
+			</tr>
+		{% endfor %}
+
+	</table>
+{% endblock %}

@@ -11,5 +11,6 @@ urlpatterns = patterns('',
 	url(r'^admin/', include(admin.site.urls)),	
 	url(r'^portfolio/', include('portfolio.urls', namespace="portfolio")),
 	url(r'^blog/', include('blog.urls', namespace="blog")),
+	url(r'^inventory/', include('inventory.urls', namespace="inventory")),
 	url(r'^$', include(admin.site.urls)),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

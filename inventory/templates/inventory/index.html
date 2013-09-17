@@ -1,0 +1,10 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Inventory Manager{% endblock %}
+{% block content %}
+	<ul>
+		{% for cat in categories %}
+			<li><a href="{% url 'inventory:list' cat.id %}">{{ cat.name }}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock %}
