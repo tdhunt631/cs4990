@@ -1,10 +1,28 @@
-{% extends "inventory/base.html" %}
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block extrascripts %}
+	<script src="{% static 'inventory/forms.js' %}"></script>
+{% endblock %}
 
 {% block title %}Inventory Manger Item List{% endblock %}
+{% block header %}
+	{% if items.0.category %}
+		{{ items.0.category }} - What a great list!
+	{% else %}
+		Umm... I'm empty!
+	{% endif %}
+{% endblock %}
+	
 {% block content %}
-<body>
-	<table id="list">
-		<tr id="titleRow">
+<div class="container">
+	<a href="/inventory/" class="btn btn-primary">Back to categories</a>
+	<br>
+	<br>
+
+	<table class="table table-bordered table-striped">
+		<tr>
 			<td><h3>Name</h3></td>
 			<td><h3>Description</h3></td>
 			<td><h3>Category</h3></td>
@@ -13,27 +31,46 @@
 		</tr>
 
 		{% for item in items %}
-			<tr class="rows">
+			<tr>
 				<td>{{ item.name }}</td>
 				<td>{{ item.description }}</td>
 				<td>{{ item.category }}</td>
-				<td>{{ item.quantity }}</td>
+				<td align="center">{{ item.quantity }}</td>
 				<td>
-					<div class="float">	
-						<form action="{% url 'inventory:addI' item.id %}" method="POST">
+						<form class="pull-left" action="{% url 'inventory:addI' item.id %}" method="POST">
 							{% csrf_token %}	
-							<button type="submit" class="add" id="{{ item.id }}">+1</button>
+							<button style="width: 75px" type="submit" class="button btn-primary btn-xs add" id="{{ item.id }}">+1</button>
 						</form>
-					</div>
-					<div class="float">
-						<form action="{% url 'inventory:subtractI' item.id %}" method="POST">
+						<form class="pull-right" action="{% url 'inventory:subtractI' item.id %}" method="POST">
 							{% csrf_token %}
-							<button type="submit" class="subtract">-1</button>
+							<button style="width: 75px" type="submit" class="button btn-primary btn-xs subtract">-1</button>
 						</form>
-					</div>
 				</td>
 			</tr>
 		{% endfor %}
 
 	</table>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3>Let's add some more items to this here list...</h3>
+	</div>
+	<div class="panel-body">
+		<form action="{% url 'inventory:addItem' %}" method="POST" id="item_form">
+			<table cellpadding="5">
+				{% csrf_token %}
+				{{ form.as_table }}
+				<input type="hidden" name="category" id="category" value="Cars" />
+				<tr>
+					<td align="right" colspan="2">
+						<button class="btn btn-lg btn-primary">Add new item</button>
+					</td>
+				</tr>
+			</table>
+			{{ message }}
+		</form>
+	</div>
+</div>
+
+</div>
 {% endblock %}
