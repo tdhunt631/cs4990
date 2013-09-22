@@ -20,13 +20,13 @@
 				<td>{{ item.quantity }}</td>
 				<td>
 					<div class="float">	
-						<form action="{% url 'inventory:addForm' item.id %}" method="POST">
+						<form action="{% url 'inventory:addI' item.id %}" method="POST">
 							{% csrf_token %}	
 							<button type="submit" class="add" id="{{ item.id }}">+1</button>
 						</form>
 					</div>
 					<div class="float">
-						<form action="{% url 'inventory:subtractForm' item.id %}" method="POST">
+						<form action="{% url 'inventory:subtractI' item.id %}" method="POST">
 							{% csrf_token %}
 							<button type="submit" class="subtract">-1</button>
 						</form>
