@@ -1,0 +1,26 @@
+		<tr>
+			<td><h3>Name</h3></td>
+			<td><h3>Description</h3></td>
+			<td><h3>Category</h3></td>
+			<td><h3>Quantity</h3></td>
+			<td><h3>Update Quantity</h3></td>
+		</tr>
+
+		{% for item in items %}
+			<tr>
+				<td>{{ item.name }}</td>
+				<td>{{ item.description }}</td>
+				<td>{{ item.category }}</td>
+				<td align="center">{{ item.quantity }}</td>
+				<td>
+					<form class="pull-left" action="{% url 'inventory:addI' item.id %}" method="POST">
+						{% csrf_token %}	
+						<button style="width: 75px" type="submit" class="button btn-primary btn-xs add" id="{{ item.id }}">+1</button>
+					</form>
+					<form class="pull-right" action="{% url 'inventory:subtractI' item.id %}" method="POST">
+						{% csrf_token %}
+						<button style="width: 75px" type="submit" class="button btn-primary btn-xs subtract">-1</button>
+					</form>
+				</td>
+			</tr>
+		{% endfor %}

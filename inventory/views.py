@@ -13,7 +13,7 @@ def index(request, message=""):
 def list(request, cat_id):
 	items = Item.objects.all().filter(category=cat_id) 
 	form = ItemForm()
-	return render(request, 'inventory/list.html', {'items': items, 'form':form})
+	return render(request, 'inventory/list.html', {'items': items, 'form':form, 'cat_id': cat_id,})
 
 def addCat(request):
 	if request.method == 'POST':
@@ -33,7 +33,7 @@ def addCat(request):
 	return render_to_response('inventory/index.html', context, context_instance=RequestContext(request))
 
 
-def addItem(request):
+def addItem(request, cat_id):
 	if request.method == 'POST':
 		form = ItemForm(request.POST)
 		if form.is_valid():
@@ -43,9 +43,9 @@ def addItem(request):
 			newItem.description = cd.get('description')
 			newItem.quantity = cd.get('quantity')
 			currentCat = request.POST.get("category")
-			newItem.category = get_object_or_404(Category, name=currentCat)  
+			newItem.category = get_object_or_404(Category, id=currentCat)  
 			newItem.save()					
-			return HttpResponseRedirect('/inventory/')
+			return HttpResponseRedirect(reverse('inventory:list', args=(cat_id,)))
 
 	message = "Oops, it broke! You should enter in something valid."
 	form = CategoryForm()
@@ -66,4 +66,3 @@ def subtractI(request, item_id):
 	item.save()
 	items = Item.objects.all().filter(category=item.category) 
 	return HttpResponse(item.quantity) 
-
