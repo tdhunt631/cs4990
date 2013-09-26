@@ -13,7 +13,12 @@ def index(request, message=""):
 def list(request, cat_id):
 	items = Item.objects.all().filter(category=cat_id) 
 	form = ItemForm()
-	return render(request, 'inventory/list.html', {'items': items, 'form':form, 'cat_id': cat_id,})
+	context = {
+		'items':items,
+		'form':form,
+		'cat_id':cat_id,
+	}
+	return render(request, 'inventory/list.html', context)
 
 def addCat(request):
 	if request.method == 'POST':
@@ -44,8 +49,13 @@ def addItem(request, cat_id):
 			newItem.quantity = cd.get('quantity')
 			currentCat = request.POST.get("category")
 			newItem.category = get_object_or_404(Category, id=currentCat)  
-			newItem.save()					
-			return HttpResponseRedirect(reverse('inventory:list', args=(cat_id,)))
+			newItem.save()
+			items = Item.objects.all().filter(category=currentCat)
+			context = {'items': items,}
+			if request.is_ajax():
+				return render_to_response('inventory/getList.html', context, context_instance=RequestContext(request))
+			else:			
+				return HttpResponseRedirect(reverse('inventory:list', args=(cat_id,)))
 
 	message = "Oops, it broke! You should enter in something valid."
 	form = CategoryForm()
@@ -57,12 +67,19 @@ def addI(request, item_id):
 	item = get_object_or_404(Item, id=item_id)
 	item.quantity += 1;
 	item.save()
-	items = Item.objects.all().filter(category=item.category) 
-	return HttpResponse(item.quantity) 
+	cat = get_object_or_404(Category, name=item.category)
+	if request.is_ajax():
+		return HttpResponse(item.quantity)
+	else:
+		return HttpResponseRedirect(reverse('inventory:list', args=(cat.id,))) 
 
 def subtractI(request, item_id):
 	item = get_object_or_404(Item, id=item_id)
 	item.quantity -= 1;
 	item.save()
 	items = Item.objects.all().filter(category=item.category) 
-	return HttpResponse(item.quantity) 
+	cat = get_object_or_404(Category, name=item.category)
+	if request.is_ajax():
+		return HttpResponse(item.quantity)
+	else:
+		return HttpResponseRedirect(reverse('inventory:list', args=(cat.id,))) 

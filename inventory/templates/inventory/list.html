@@ -3,7 +3,48 @@
 {% load staticfiles %}
 
 {% block extrascripts %}
-	<script src="{% static 'inventory/js/forms.js' %}"></script>
+<script>
+$(function(){
+	$(".add").click(function(e){
+		e.preventDefault();
+		var prevTD = $(this).closest('td').prev('td');
+		$.ajax({
+			url: $(this).parent().attr('action'),
+			type: "post",
+			data: $(this).parent().serialize(),
+			success: function(d) {
+				prevTD.html(d);
+				console.log(d);
+			},
+			error: function(d){
+				console.log(d);
+			},
+		});
+		return false;
+	});	
+});
+
+$(function(){
+	$(".subtract").click(function(e){
+		e.preventDefault();
+		var prevTD = $(this).closest('td').prev('td');
+		$.ajax({
+			url: $(this).parent().attr('action'),
+			type: "post",
+			data: $(this).parent().serialize(),
+			success: function(d) {
+				prevTD.html(d);
+				console.log(d);
+			},
+			error: function(d){
+				console.log(d);
+			},
+		});
+		return false;
+	});	
+});
+</script>
+<script src="{% static 'inventory/js/forms.js' %}"></script>
 {% endblock %}
 
 {% block title %}Inventory Manger Item List{% endblock %}
