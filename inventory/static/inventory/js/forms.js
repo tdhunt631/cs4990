@@ -6,7 +6,6 @@ $(function(){
 			type: "post",
 			data: $(this).serialize(),
 			success: function(d) {
-				console.log(d);	
 				$('#listTable').html(d);	
 			},
 			error: function(d){
@@ -25,7 +24,8 @@ $(function(){
 			type: "post",
 			data: $(this).serialize(),
 			success: function(d) {
-				console.log("successful");		
+				$('#catList').html(d);			
+				$('#category_form')[0].reset();
 			},
 			error: function(){
 				console.log("unsuccessful attempt");

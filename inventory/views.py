@@ -29,7 +29,12 @@ def addCat(request):
 			newCat.name = cd.get('name')
 			newCat.description = cd.get('description')
 			newCat.save()					
-			return HttpResponseRedirect('/inventory/')
+			if request.is_ajax():
+				categories = Category.objects.all()
+				context = {'categories': categories,}
+				return render_to_response('inventory/getCats.html', context, context_instance=RequestContext(request))
+			else:
+				return HttpResponseRedirect('/inventory/')
 
 	message = "Oops, it broke! You should enter in something valid."
 	form = CategoryForm()

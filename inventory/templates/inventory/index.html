@@ -1,7 +1,12 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 {% block title %}Inventory Manager{% endblock %}
 {% block header %}Inventory Manager{% endblock %}
+
+{% block extrascripts %}
+	<script src="{% static 'inventory/js/forms.js' %}"></script>
+{% endblock %}
+
 
 {% block content %}
 <div class="container">
@@ -9,7 +14,7 @@
 		<div class="panel-heading">
 			<h3>Choose your category wisely...</h3>
 		</div>
-		<div class="panel-body">
+		<div id="catList" class="panel-body">
 			<ul class="list-group">
 			{% for cat in categories %}
 				<li class="list-group-item">

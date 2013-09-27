@@ -1,0 +1,11 @@
+<div id="catList" class="panel-body">
+	<ul class="list-group">
+		{% for cat in categories %}
+			<li class="list-group-item">
+				<a href="{% url 'inventory:list' cat.id %}">{{ cat.name }}</a>
+				<strong>- </strong> {{ cat.description }}
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+
